@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :coupons
-end
+  resources :coupons, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+
+
+end 

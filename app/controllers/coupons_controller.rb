@@ -20,17 +20,15 @@ class CouponsController < ApplicationController
     redirect_to coupons_path
   end
 
-  def edit
+  def edit 
     @coupon = Coupon.find(params[:id])
   end
 
   def update
     @coupon = Coupon.find(params[:id])
-    @coupon.store = params[:coupon][:store]
-    @coupon.coupon_code = params[:coupon][:coupon_code]
-    @coupon.save
-    redirect_to coupons_path
-  end
+    @coupon.update(coupon_code: params[:coupon][:coupon_code], store: params[:coupon][:store])
+    redirect_to coupon_path(@coupon)
+  end 
 
   def destroy
     @coupon.destroy
@@ -39,4 +37,5 @@ class CouponsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
